@@ -1,5 +1,4 @@
-from numpy.lib.function_base import select
-import trabalho as T
+from utils import trabalho as T
 import numpy as np
 
 class pahtJobs:
@@ -30,60 +29,58 @@ class greed:
                 conjTarefas[result[0][0]] = currJob.final
             else:
                 conjTarefas = np.append(conjTarefas, currJob.final)
-                
+    
         return len(conjTarefas)
 
     def computeP(self, index) -> int:
-        esq = 0
-        dire = index - 1
-
-        while esq <= dire:
-            meio = np.right_shift(dire + esq, 1) # Divisão por 2 fazendo bit sift para a direita 1x
-
-            if self.listaDeTarefas[meio].final <= self.listaDeTarefas[index].comeco:
-                if self.listaDeTarefas[meio + 1].final <= self.listaDeTarefas[index].comeco:
-                    esq = meio + 1
-                else:
-                    return meio
-            else:
-                dire = meio - 1
-
+        if index == 0:
+            return 0
+        for i in range(index, -1, -1):
+            if self.listaDeTarefas[i].final <= self.listaDeTarefas[index].comeco:
+                return i
         return None
-    
+
     def intervalSchWei(self):
+        totalPass = self.intervalParti()
+        ResultFinal = []
+        for k in range(0, totalPass):
+            self.listaDeTarefas.sort(key=lambda x: x.final)
+            caminhosPossiveis = []
 
-        # for k in 
-        self.listaDeTarefas.sort(key=lambda x: x.final)
-        caminhosPossiveis = []
+            for i in range(0, len(self.listaDeTarefas)):
+                caminhosPossiveis.append(pahtJobs())
+
+            caminhosPossiveis[0].total = self.listaDeTarefas[0].prioridade
+            caminhosPossiveis[0].jobs.append(self.listaDeTarefas[0])
+
+            for i in range(1, len(self.listaDeTarefas)):
+
+                tmpTotal = self.listaDeTarefas[i].prioridade
+                indexJob = self.computeP(i)
+
+                if indexJob != None:
+                    tmpTotal += caminhosPossiveis[indexJob].total
+
+                if tmpTotal > caminhosPossiveis[i - 1].total:
+                    caminhosPossiveis[i].total = tmpTotal
+
+                    if indexJob != None:
+                        caminhosPossiveis[i].jobs = caminhosPossiveis[indexJob].jobs
+
+                    caminhosPossiveis[i].jobs.append(self.listaDeTarefas[i])
+
+                else:
+                    caminhosPossiveis[i] = caminhosPossiveis[i - 1]
+
+            for i, obj in enumerate(caminhosPossiveis[len(self.listaDeTarefas) - 1].jobs):
+                self.listaDeTarefas.pop(self.listaDeTarefas.index(obj))
+
+            ResultFinal.append(caminhosPossiveis[len(self.listaDeTarefas) - 1].jobs)
+
+        return ResultFinal
         
-        for i in range(0, len(self.listaDeTarefas)):
-            caminhosPossiveis.append(pahtJobs())
 
-        caminhosPossiveis[0].total = self.listaDeTarefas[0].prioridade
-        caminhosPossiveis[0].jobs.append(self.listaDeTarefas[0])
-
-        for i in range(1, len(self.listaDeTarefas)):
-            tmpTotal = self.listaDeTarefas[i].prioridade
-            indexJob = self.computeP(i)
-
-            if indexJob != None:
-                tmpTotal += caminhosPossiveis[indexJob].total
-            
-            if tmpTotal > caminhosPossiveis[i - 1].total and indexJob != None:
-                caminhosPossiveis[i].total = tmpTotal
-
-                caminhosPossiveis[i].jobs = caminhosPossiveis[indexJob].jobs
-                caminhosPossiveis[i].jobs.append(self.listaDeTarefas[i])
-            else:
-                caminhosPossiveis[i] = caminhosPossiveis[i - 1]
-
-            
-        for i in caminhosPossiveis[8].jobs:
-            print(i.nome)
-            self.listaDeTarefas.pop(self.listaDeTarefas.index(i))
-        print(self.listaDeTarefas)
-
-g = greed([T.trabalho(0, 15, 15, "A"), T.trabalho(2, 16, 10,"B"),  T.trabalho(2, 17,10, "C"), T.trabalho(2, 18,10, "D"), T.trabalho(18, 20,10, "E"), T.trabalho(18, 20,10, "F"), T.trabalho(16, 20, 27, "G"), T.trabalho(18, 20,10, "H"), T.trabalho(18, 20,10, "I")])
+# g = greed([T.trabalho(0, 15, 15, "A"), T.trabalho(2, 16, 10,"B"),  T.trabalho(2, 17,10, "C"), T.trabalho(2, 18,10, "D"), T.trabalho(18, 22, 10, "E"), T.trabalho(18, 22,10, "F"), T.trabalho(14, 20, 27, "G"), T.trabalho(18, 20,10, "H"), T.trabalho(18, 20,10, "I"), T.trabalho(20, 21,10, "J"),])
 
 
-g.intervalSchWei()
+# g.intervalSchWei()
