@@ -1,5 +1,4 @@
-
-import trabalho as T
+from utils import trabalho as T
 import numpy as np
 
 class pahtJobs:
@@ -81,7 +80,7 @@ class greed:
         return self.final # Return [[tarefa, tarefa], [tarefa], [tarefa, tarefa], [tarefa, tarefa]]
         
 
-g = greed([T.trabalho(0, 15, 15, "A"), T.trabalho(2, 16, 10,"B"),  T.trabalho(2, 17,10, "C"), T.trabalho(2, 18,10, "D"), T.trabalho(18, 22, 10, "E"), T.trabalho(18, 22,10, "F"), T.trabalho(14, 20, 27, "G"), T.trabalho(18, 20,10, "H"), T.trabalho(18, 20,10, "I"), T.trabalho(20, 21,10, "J"), T.trabalho(21, 22,10, "J"), T.trabalho(22, 23,10, "J"), T.trabalho(23, 24,10, "J"), T.trabalho(24, 25,10, "J")])
+# g = greed([T.trabalho(0, 15, 15, "A"), T.trabalho(2, 16, 10,"B"),  T.trabalho(2, 17,10, "C"), T.trabalho(2, 18,10, "D"), T.trabalho(18, 22, 10, "E"), T.trabalho(18, 22,10, "F"), T.trabalho(14, 20, 27, "G"), T.trabalho(18, 20,10, "H"), T.trabalho(18, 20,10, "I"), T.trabalho(20, 21,10, "J"), T.trabalho(21, 22,10, "J"), T.trabalho(22, 23,10, "J"), T.trabalho(23, 24,10, "J"), T.trabalho(24, 25,10, "J")])
 
-print(g.intervalParti())
-print(g.intervalSchWei())
+# print(g.intervalParti())
+# print(g.intervalSchWei())
