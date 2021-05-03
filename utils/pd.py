@@ -4,10 +4,10 @@ import numpy as np
 class pahtJobs:
     def __init__(self) -> None:
         self.jobs = []
-        self.total = 0
+        self.total = 0.0
 
 
-class greed:
+class pd:
     def __init__(self, ListaDeTarefas:list) -> None:
         self.listaDeTarefas = ListaDeTarefas
         self.final = []
@@ -44,6 +44,10 @@ class greed:
 
         for k in range(0, self.intervalParti()): # For para poder repetir X quantidades de vezes nas quais vão ser necessarias, para terminat todas as tarefas.
             self.listaDeTarefas.sort(key=lambda x: x.final)
+
+            for i in self.listaDeTarefas:
+                print(str(k) + " "+i.nome)
+
             caminhosPossiveis = [] 
 
             for i in range(0, len(self.listaDeTarefas)): # Inicialização
@@ -76,11 +80,12 @@ class greed:
                 self.listaDeTarefas.pop(self.listaDeTarefas.index(obj))
 
             self.final.append(caminhosPossiveis[len(self.listaDeTarefas) - 1].jobs)
+            
+        for index, lista in enumerate(self.final):
+            print(f"Viatura {index+1} - ", end = "")
+            for j in lista:
+                print(j.nome, end=" ")
+            print()
 
         return self.final # Return [[tarefa, tarefa], [tarefa], [tarefa, tarefa], [tarefa, tarefa]]
         
-
-# g = greed([T.trabalho(0, 15, 15, "A"), T.trabalho(2, 16, 10,"B"),  T.trabalho(2, 17,10, "C"), T.trabalho(2, 18,10, "D"), T.trabalho(18, 22, 10, "E"), T.trabalho(18, 22,10, "F"), T.trabalho(14, 20, 27, "G"), T.trabalho(18, 20,10, "H"), T.trabalho(18, 20,10, "I"), T.trabalho(20, 21,10, "J"), T.trabalho(21, 22,10, "J"), T.trabalho(22, 23,10, "J"), T.trabalho(23, 24,10, "J"), T.trabalho(24, 25,10, "J")])
-
-# print(g.intervalParti())
-# print(g.intervalSchWei())
