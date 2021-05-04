@@ -4,7 +4,7 @@ from utils import trabalho as T
 from prettytable import PrettyTable
 
 # Contexto
-print('Bem-vindo ao PolicePanel, seu funcionamento se baseia em uma central que recebe uma lista de crimes cometidos e utilizando de Programação Dinâmica estabelece uma prioridade de atendimentos, além disso utiliza-se também de Interval Partitioning para saber a quantidade de viaturas que estarão em serviço no dia.')
+print('Bem-vindo ao Police Panel, seu funcionamento se baseia em uma central que recebe uma lista de crimes cometidos e utilizando de Programação Dinâmica estabelece uma prioridade de atendimentos, além disso utiliza-se também de Interval Partitioning para saber a quantidade de viaturas que estarão em serviço no dia.')
 
 print('\nSeu objetivo é estabelecer a duração de um crime, começo e fim, bem como a prioridade que aquele crime detém e descrever qual é aquele tipo do crime para que o algoritmo possa fornecer a quantidade de viaturas que deverão estar em serviço e quais crimes cada uma deverá ser responsável')
 
@@ -24,12 +24,10 @@ escolha = int(input('Insira sua escolha: '))
 print('\n')
 
 while(escolha > 3 or escolha < 1):
-    print(escolha)
     #Escolha errada
-    if escolha > 3 or escolha < 1:
-        print('Desculpe o valor inserido não é um valor aceito pelo sistema.')
-        print('Os valores aceitos são:\n1- Inserir crimes\n2- Utilizar crimes já registrados\n3- Sair do programa\n')
-        escolha = int(input('Insira sua escolha novamente: '))
+    print('Desculpe o valor inserido não é um valor aceito pelo sistema.')
+    print('Os valores aceitos são:\n1- Inserir crimes\n2- Utilizar crimes já registrados\n3- Sair do programa\n')
+    escolha = int(input('Insira sua escolha novamente: '))
 
 #Escolha 1 #TODO Verificar o que devera ser inserido
 if escolha == 1:
@@ -47,6 +45,8 @@ if escolha == 1:
 
     for i in crimes:
         descricaoCrimes.add_row([i.comeco, i.final, i.prioridade, i.nome])
+    
+    print(descricaoCrimes)
 
     resolve = pd.pd(crimes)
     resolve.intervalSchWei() # Calculo das escolhas.
