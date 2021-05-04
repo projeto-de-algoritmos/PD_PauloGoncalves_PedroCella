@@ -13,7 +13,9 @@
 O algoritmo PolicePanel consiste em categorizar crimes pela prioridade utilizando de programação dinâmica e distribuí-los entre um número de viaturas baseado na quantidade crimes cometidos
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![op3](./img/op3.png)
+![op2](./img/op2.png)
+![op1](./img/op1.png)
 
 ## Instalação 
 **Linguagem**: Python<br>

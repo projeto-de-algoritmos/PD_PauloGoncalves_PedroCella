@@ -35,7 +35,7 @@ class pd:
         """
         Função para retornar o indice, da maior tarefa que é compativel com o indice inicial.
         """
-        for i in range(index, -1, -1): # TODO: Busca Binaria, para poder achar.
+        for i in range(index, -1, -1):
             if self.listaDeTarefas[i].final <= self.listaDeTarefas[index].comeco:
                 return i
         return None
@@ -44,9 +44,6 @@ class pd:
 
         for k in range(0, self.intervalParti()): # For para poder repetir X quantidades de vezes nas quais vão ser necessarias, para terminat todas as tarefas.
             self.listaDeTarefas.sort(key=lambda x: x.final)
-
-            for i in self.listaDeTarefas:
-                print(str(k) + " "+i.nome)
 
             caminhosPossiveis = [] 
 
@@ -76,16 +73,11 @@ class pd:
                 else: # Se não, a nova escolha continua sendo a mesma que a anterior.
                     caminhosPossiveis[i] = caminhosPossiveis[i - 1]
 
+            escolhas = list()
             for i, obj in enumerate(caminhosPossiveis[len(self.listaDeTarefas) - 1].jobs): # Retirando as tarefas ja escolhidas.
-                self.listaDeTarefas.pop(self.listaDeTarefas.index(obj))
+                escolhas.append(self.listaDeTarefas.pop(self.listaDeTarefas.index(obj)))
 
-            self.final.append(caminhosPossiveis[len(self.listaDeTarefas) - 1].jobs)
-            
-        for index, lista in enumerate(self.final):
-            print(f"Viatura {index+1} - ", end = "")
-            for j in lista:
-                print(j.nome, end=" ")
-            print()
+            self.final.append(escolhas)
 
         return self.final # Return [[tarefa, tarefa], [tarefa], [tarefa, tarefa], [tarefa, tarefa]]
         

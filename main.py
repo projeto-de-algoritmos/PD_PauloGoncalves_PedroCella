@@ -49,7 +49,7 @@ if escolha == 1:
         descricaoCrimes.add_row([i.comeco, i.final, i.prioridade, i.nome])
 
     resolve = pd.pd(crimes)
-    resolve.intervalSchWei()
+    resolve.intervalSchWei() # Calculo das escolhas.
 
     for index, lista in enumerate(resolve.final):
         crimesViatura = []
@@ -63,7 +63,7 @@ if escolha == 1:
 elif escolha == 2:
     print('Foi registrada os seguintes crimes e seus dados:')
 
-    viatura = pd.pd([T.trabalho(0, 15, 15, "Furto de veículos"), T.trabalho(2, 16, 10,"Roubo à instituição financeira"),  T.trabalho(2, 17,10, "Roubo deveículo"), T.trabalho(2, 18,10, "Roubo de carga"), T.trabalho(18, 22, 10, "Tentativa de Homicídio"), T.trabalho(18, 22,10, "Tráfico de drogas"), T.trabalho(14, 20, 27, "Latrocínio"), T.trabalho(18, 20,10, "Homicídio doloso"), T.trabalho(18, 20,10, "Sequestro"), T.trabalho(20, 21,10, "Vandalismo"), T.trabalho(21, 22,10, "Dano ao patrimônio público")])
+    viatura = pd.pd([T.trabalho(0, 15, 15, "Furto de veículos"), T.trabalho(2, 16, 10,"Roubo à instituição financeira"),  T.trabalho(2, 17,10, "Roubo de veículo"), T.trabalho(2, 18,10, "Roubo de carga"), T.trabalho(18, 22, 10, "Tentativa de Homicídio"), T.trabalho(18, 22,10, "Tráfico de drogas"), T.trabalho(14, 20, 27, "Latrocínio"), T.trabalho(18, 20,10, "Homicídio doloso"), T.trabalho(18, 20,10, "Sequestro"), T.trabalho(20, 21,10, "Vandalismo"), T.trabalho(21, 22,10, "Dano ao patrimônio público")])
     
     for i in viatura.listaDeTarefas:
         descricaoCrimes.add_row([i.comeco, i.final, i.prioridade, i.nome])
